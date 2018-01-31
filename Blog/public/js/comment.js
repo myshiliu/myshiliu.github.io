@@ -32,9 +32,15 @@ $('#btn_submit').on('click', function () {
         dataType:'json',
         success: function (result) {
             $('#comment').val('');
-            comments = result.data.comments.reverse();
-            currentPage = 1;
-            renderComment();//reverse()  反转   可把数组进行反转过来
+            if (result.data){
+                comments = result.data.comments.reverse();
+                currentPage = 1;
+                renderComment();//reverse()  反转   可把数组进行反转过来
+                $('#commentError').hide();
+            }else {
+                $('#commentError').html(result.message);
+                $('#commentError').show();
+            }
         }
     });
 });

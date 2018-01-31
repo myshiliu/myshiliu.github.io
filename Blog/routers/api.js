@@ -132,8 +132,7 @@ router.post('/comment',function (req,res,next) {
     hrefData = [];
     if (contents == ''){
         responseData.code = -1;
-        responseData.message = '评论失败';
-        responseData.data = newContent;
+        responseData.message = '请输入评论内容';
         res.json(responseData);
         return;
     }
