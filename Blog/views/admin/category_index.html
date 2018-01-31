@@ -1,0 +1,34 @@
+{% extends 'layout.html'%}
+{% block main%}
+<div class="container-fluid">
+    <!--代表格的面板展示用户数据-->
+    <ol class="breadcrumb">
+        <li><a href="#">分类管理</a></li>
+        <li class="active">分类首页</li>
+    </ol>
+    <table class="table table-bordered table-hover">
+        <caption class="caption text-center" style="background: #d8d8d8 ;color: #000000;font-size: 18px;">分类列表</caption>
+        <thead style="background: #f3f3f3">
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{category._id.toString()}}</td>
+            <td>{{category.categoryName}}</td>
+            <td>
+                <a href="/admin/category_edit?category_id={{category._id.toString()}}">修改</a>
+                <a href="/admin/category_delete?category_id={{category._id.toString()}}">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!--引入公共分页 page.html页面-->
+    {% include '../page.html' %}
+</div>
+{% endblock%}

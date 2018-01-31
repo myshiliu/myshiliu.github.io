@@ -1,0 +1,44 @@
+{% extends 'layout.html'%}
+{% block main%}
+<div class="container-fluid">
+    <!--代表格的面板展示用户数据-->
+    <ol class="breadcrumb">
+        <li><a href="#">内容管理</a></li>
+        <li class="active">内容首页</li>
+    </ol>
+    <table class="table table-bordered table-hover">
+        <caption class="caption text-center" style="background: #d8d8d8 ;color: #000000;font-size: 18px;">内容列表</caption>
+        <thead style="background: #f3f3f3">
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+            <th>标题</th>
+            <th>作者</th>
+            <th>阅读数</th>
+            <th>修改时间</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+        <tr>
+            <td>{{content._id.toString()}}</td>
+            <td>{{content.category.categoryName}}</td>
+            <td>{{content.title}}</td>
+            <td>{{content.users.username}}</td>
+            <td>{{content.views}}</td>
+            <td>{{content.updateDate|date('Y-m-d  H:i:s',-8*60)}}</td><!-- |：管道符  格式：时间字符串|date('Y年m月d日 H:i:s',-8*60)   '-8*60:表示偏移量  以分钟为值 当前为东八区 则乘8为负'  -->
+            <td>{{content.createDate|date('Y-m-d  H:i:s',-8*60)}}</td>
+            <td>
+                <a href="/admin/content_edit?content_id={{content._id.toString()}}">修改</a>
+                <a href="/admin/content_delete?content_id={{content._id.toString()}}">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!--引入公共分页 page.html页面-->
+    {% include '../page.html' %}
+</div>
+{% endblock%}

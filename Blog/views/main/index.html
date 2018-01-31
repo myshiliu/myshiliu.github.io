@@ -1,0 +1,23 @@
+{% extends 'layout.html'%}
+{% block leftMain%}
+<div class="leftBox">
+    {% if data.contents != null && data.contents.length > 0%}
+    {% for content in data.contents %}
+    <div class="jumbotron">
+        <h3 style="text-align: center">{{content.title}}</h3>
+        <p style="font-size: 15px">
+            作者：<span>{{content.users.username}}</span>    -
+            时间：<span>{{content.updateDate|date('Y-m-d  H:i:s',-8*60)}}</span>    -
+            阅读量：<span>{{content.views}}</span>    -
+            评论：<span>{{content.comments.length}}</span>
+        </p>
+        <p>{{content.description}}</p>
+        <p><a class="btn btn-primary btn-sm" href="/view?contentId={{content._id.toString()}}&categoryId={{content.category._id.toString()}}" role="button">查看全文</a></p>
+    </div>
+    {% endfor %}
+    {% include '../page.html' %}
+    {% else %}
+    <div class="jumbotron" role="alert" style="text-align: center">暂无博客</div>
+    {% endif %}
+</div>
+{% endblock %}

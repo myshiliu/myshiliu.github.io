@@ -1,0 +1,31 @@
+{% extends 'layout.html'%}
+{% block leftMain%}
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="comment">分类管理</a></li>
+        <li class="active">提示信息</li>
+    </ol>
+    {% if responseData.code == 1%}
+    <div class="panel panel-success">
+        <div class="panel-heading">成功！！！</div>
+        <div class="panel-body">
+            <p>{{responseData.message}}</p>
+            {% for href  in responseData.hrefs %}
+            <a href="{{ href.url }}">{{ href.title}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% if responseData.code == -1%}
+    <div class="panel panel-danger">
+        <div class="panel-heading">失败！！！</div>
+        <div class="panel-body">
+            <p>{{responseData.message}}</p>
+            {% for href  in responseData.hrefs %}
+            <a href="{{ href.url }}">{{ href.title}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

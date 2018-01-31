@@ -1,0 +1,10 @@
+<!--布局的复用，extends ‘需要复用的布局’-->
+{% extends  'layout.html'%}
+<!--实现block 重写block中的内容 这里的main是指父布局中定义的 占位符中 block定义的name-->
+{%block main%}
+<div class="container">
+    <h1>Hello, {{ userInfo.username }}</h1>
+    <p>欢迎来到我的博客后台管理</p>
+    <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+</div>
+{%endblock%}

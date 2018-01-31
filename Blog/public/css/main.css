@@ -1,0 +1,67 @@
+body{
+    background: white;
+}
+.leftBox{
+    width:80%;
+    position: absolute;
+}
+.rightBox{
+    min-width: 200px;
+    height: 200px;
+    background: #fff;
+    border: #9d9d9d solid 1px;
+    padding: 10px;
+    float: right;
+}
+.boxTitle{
+    font-size: 16px;
+    color: #000000;
+    width: auto;
+    margin-bottom: 10px;
+    border-bottom: #d57e25 solid 2px;
+}
+.marginTop_5{
+    margin-top: 5px;
+}
+.marginTop_10{
+    margin-top: 10px;
+}
+.marginTop_15{
+    margin-top: 15px;
+}
+.marginTop_20{
+    margin-top: 20px;
+}
+.contentTv{
+    font-size: 15px;
+}
+.lineLayout{
+    margin: 5px 0px;
+}
+.conInput{
+    height: 20px;
+    line-height: 20px;
+}
+.longBtn{
+    background: #d57e25;
+    width: auto;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+}
+.rightSubscript{
+    text-align: right;
+    font-size: 13px;
+    height: 26px;
+    margin-top: 8px;
+    line-height: 26px;
+}
+.colMint{
+    color: #5cb85c;
+}
+.colWarning{
+    color: #d57e25;
+    font-size: 12px;
+    text-align: center;
+}

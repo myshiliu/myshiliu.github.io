@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/public/css/main.css"/>
+    <style>
+        #login {
+            margin-top: 20px;
+        }
+
+        #register {
+            margin-top: 20px;
+        }
+
+        #loginInfo {
+            height: auto;
+        }
+
+        .logout {
+            font-size: 14px;
+            height: 26px;
+            line-height: 26px;
+            margin-top: 20px;
+        }
+
+        .toManger {
+            text-align: right;
+        }
+
+        .hintMessage {
+        }
+
+    </style>
+</head>
+<script src="/public/js/jquery-1.11.3.js"></script>
+<script src="/public/js/index.js"></script>
+<body>
+<img src="/public/img/banner.jpg" style="width:100% ; height: 230px;"/>
+<ul class="nav nav-pills">
+    {% if data.categoryId != null %}
+        <li role="presentation"><a href="/index?">首页</a></li>
+    {% else %}
+        <li role="presentation" class="active"><a href="/index?">首页</a></li>
+    {% endif %}
+    {% for category in data.category%}
+    {% if data.categoryId != null && category._id == data.categoryId %}
+    <li role="presentation" class="active"><a href="/index?categoryId={{category._id.toString()}}">{{category.categoryName}}</a></li>
+    {% else %}
+    <li role="presentation"><a href="/index?categoryId={{category._id.toString()}}">{{category.categoryName}}</a></li>
+    {% endif %}
+    {% endfor %}
+
+</ul>
+<div class="panel-body">
+    <div class="leftBox" >
+        {% block leftMain %}{% endblock %}
+    </div>
+    <div class="rightBox">
+        {% if userInfo.userId %}
+        <div id="loginInfo">
+            <div class="boxTitle">用户信息</div>
+            <div class="marginTop_20 contentTv" name="username">{{userInfo.username}}</div>
+            {% if userInfo.isAdmin %}
+            <div class="marginTop_5 contentTv"><span class="hintMessage">你好，管理员！！！</span></div>
+            <div class="toManger marginTop_5 contentTv"><a href="/admin">进入管理</a></div>
+            {% else %}
+            <div class="marginTop_5 contentTv"><span class="hintMessage" id="hintMessage">你好，欢迎来到我的博客！！！</span></div>
+            {% endif %}
+            <div class="logout"><a href="javascript:;" id="logout">退出</a></div>
+        </div>
+        {% else %}
+        <div id="loginBox">
+            <div class="boxTitle">登录</div>
+            <div class="lineLayout"><span>用户：</span><input type="text" name="username" class="conInput"
+                                                           placeholder="请输入用户名"/></div>
+            <div class="lineLayout"><span>密码：</span><input type="password" name="password" class="conInput"
+                                                           placeholder="请输入密码"/></div>
+            <div id="login" class="longBtn">登录</div>
+            <div class="rightSubscript">还没账号？ <a href="javascript:;" class="colMint">马上注册</a></div>
+            <p class="colWarning"></p>
+        </div>
+        <div id="registerBox" class="contentTv" style="display: none">
+            <div class="boxTitle">注册</div>
+            <div class="lineLayout"><span>用户：</span><input type="text" name="username" class="conInput"
+                                                           placeholder="请输入用户名"/></div>
+            <div class="lineLayout"><span>密码：</span><input type="password" name="password" class="conInput"
+                                                           placeholder="请输入密码"/></div>
+            <div class="lineLayout"><span>确认：</span><input type="password" name="repassword" class="conInput"
+                                                           placeholder="请再次输入密码"/></div>
+            <div id="register" class="longBtn">注册</div>
+            <p class="colWarning"></p>
+            <div class="rightSubscript">已有帐号 <a href="javascript:;" class="colMint">马上登录</a></div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

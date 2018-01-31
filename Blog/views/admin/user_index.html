@@ -1,0 +1,39 @@
+<!--布局的复用，extends ‘需要复用的布局’-->
+{% extends  'layout.html'%}
+<!--实现block 重写block中的内容 这里的main是指父布局中定义的 占位符中 block定义的name-->
+{%block main%}
+<div class="container-fluid">
+    <!--代表格的面板展示用户数据-->
+    <ol class="breadcrumb">
+        <li><a href="#">管理首页</a></li>
+        <li class="active">用户管理</li>
+    </ol>
+    <table class="table table-bordered table-hover">
+        <caption class="caption text-center" style="background: #d8d8d8 ;color: #000000;font-size: 18px;">用户列表</caption>
+        <thead style="background: #f3f3f3">
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>是否为管理员</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for users in users %}
+        <tr>
+            <td>{{users._id.toString()}}</td>
+            <td>{{users.username}}</td>
+            <td>{{users.password}}</td>
+            <td>
+                {% if users.isAdmin %} 是
+                {% else %} 否
+                {% endif%}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!--引入公共分页 page.html页面-->
+    {% include '../page.html' %}
+</div>
+{%endblock%}
